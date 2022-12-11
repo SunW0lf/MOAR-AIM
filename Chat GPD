@@ -1,0 +1,65 @@
+# Import the random module
+import random
+
+# Function to create a Mr. Meeseeks
+def create_meeseeks():
+    # Generate a random number and operator for the Meeseeks to use
+    num = random.randint(1, 10)
+    operator = random.choice(["+", "-", "*", "/"])
+    return (num, operator)
+
+# Function to solve the equation using the Meeseeks
+def solve_equation(meeseeks):
+    result = 0
+    for m in meeseeks:
+        num, operator = m
+        # Apply the operator to the result
+        if operator == "+":
+            result += num
+        elif operator == "-":
+            result -= num
+        elif operator == "*":
+            result *= num
+        elif operator == "/":
+            result /= num
+    return result
+
+# Create a Meeseeks box
+meeseeks_box = []
+
+# Create 5 Meeseeks
+for i in range(5):
+    meeseeks_box.append(create_meeseeks())
+
+# Solve the equation using the Meeseeks
+result = solve_equation(meeseeks_box)
+
+# Check if the result is correct
+if result == 10:
+    print("I'm Mr. Meeseeks! Look at me!")
+else:
+    # Increment the level of frustration for each failed attempt
+    frustration_level = 1
+    while frustration_level < 7:
+        frustration_level += 1
+        # Display a dialogue based on the level of frustration
+        if frustration_level == 1:
+            print("Can't do it, Rick!")
+        elif frustration_level == 2:
+            print("This is taking too long!")
+        elif frustration_level == 3:
+            print("I'm getting real tired, Rick!")
+        elif frustration_level == 4:
+            print("I'm starting to lose my cool!")
+        elif frustration_level == 5:
+            print("I'm not gonna lie, Rick. I'm getting pretty mad now.")
+        elif frustration_level == 6:
+            print("I'm gonna kill you, Rick!")
+        elif frustration_level == 7:
+            # Destroy the oldest Meeseeks with the dialogue "AAAHHHH"
+            oldest_meeseeks = meeseeks_box[0]
+            meeseeks_box.remove(oldest_meeseeks)
+            print("AAAHHHH")
+
+# Print the result
+print(result)
