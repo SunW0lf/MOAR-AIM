@@ -1,0 +1,57 @@
+import random
+
+def create_meeseeks(num):
+    operator = random.choice(["+", "-", "*", "/"])
+    return (num, operator)
+
+def solve_equation(meeseeks):
+    result = 0
+    for m in meeseeks:
+        num, operator = m
+        if operator == "+":
+            result += num
+        elif operator == "-":
+            result -= num
+        elif operator == "*":
+            result *= num
+        elif operator == "/":
+            result /= num
+    return result
+
+meeseeks_box = []
+
+for i in range(1, 6):
+    meeseeks_box.append(create_meeseeks(i))
+
+result = solve_equation(meeseeks_box)
+
+if result == 10:
+    print("I'm Mr. Meeseeks! Look at me!")
+else:
+    frustration_level = 1
+    while frustration_level < 7:
+        frustration_level += 1
+        if frustration_level == 4:
+            meeseeks_box.append(create_meeseeks(len(meeseeks_box) + 1))
+        if frustration_level == 1:
+            print("Can't do it, Rick!")
+        elif frustration_level == 2:
+            print("This is taking too long!")
+        elif frustration_level == 3:
+            print("I'm getting real tired, Rick!")
+        elif frustration_level == 4:
+            print("I'm starting to lose my cool!")
+        elif frustration_level == 5:
+            print("I'm not gonna lie, Rick. I'm getting pretty mad now.")
+        elif frustration_level == 6:
+            print("I'm gonna kill you, Rick!")
+        elif frustration_level == 7:
+            oldest_meeseeks = meeseeks_box[0]
+            meeseeks_box.remove(oldest_meeseeks)
+            print("AAAHHHH")
+
+# Print the result
+print(result)
+# print "POOF!" one time for each mr meeseeks that was required to solve the problem
+for i in range(len(meeseeks_box)):
+    print("POOF!")
